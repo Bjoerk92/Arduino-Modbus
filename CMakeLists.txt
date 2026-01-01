@@ -23,6 +23,7 @@ set(CMAKE_C_COMPILER   ${AVRC})
 set(CMAKE_ASM_COMPILER   ${AVRC})
 
 project (Modbus C CXX ASM)
+add_subdirectory(Drivers)
 
 set(CMAKE_BUILD_TYPE Release)
 
@@ -43,9 +44,25 @@ set(CMAKE_CXX_FLAGS "${CXXFLAGS}")
 set(CMAKE_ASM_FLAGS   "${CFLAGS}")
 
 # Project setup
-include_directories(${INC_PATH} ${LIB_INC_PATH})
 add_executable(${PROJECT_NAME} main.c)
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "${PROJECT_NAME}.elf")
+
+add_compile_definitions(
+    PUBLIC
+        "F_CPU=${F_CPU}"
+        "__AVR_ATmega328P__"
+)
+
+target_link_libraries(${PROJECT_NAME} 
+    UARTS
+    Atmega328p
+)
+
+target_include_directories(${PROJECT_NAME} 
+    PUBLIC
+        "Drivers"
+)
+
 
 # Compiling targets
 add_custom_target(strip ALL     ${AVRSTRIP} "${PROJECT_NAME}.elf" DEPENDS ${PROJECT_NAME})
