@@ -55,7 +55,8 @@ add_compile_definitions(
 
 target_link_libraries(${PROJECT_NAME} 
     UARTS
-    Atmega328p
+    GPIO
+
 )
 
 target_include_directories(${PROJECT_NAME} 

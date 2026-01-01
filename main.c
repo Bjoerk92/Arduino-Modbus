@@ -9,6 +9,7 @@
  * 
  */
 #include "uarts.h"
+#include "gpio.h"
 
 int main(void)
 {
