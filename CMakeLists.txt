@@ -28,7 +28,7 @@ add_subdirectory(Drivers)
 set(CMAKE_BUILD_TYPE Release)
 
 # Compiler flags
-set(CSTANDARD "-std=gnu99")
+set(CSTANDARD "-std=gnu17")
 #set(CDEBUG    "-gstabs -g -ggdb")
 set(CWARN     "-Wall -Wstrict-prototypes -Wl,--gc-sections -Wl,--relax")
 set(CTUNING   "-funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -ffunction-sections -fdata-sections")
