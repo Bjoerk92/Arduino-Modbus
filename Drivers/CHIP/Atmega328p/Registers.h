@@ -8,6 +8,7 @@
  * @copyright Copyright (c) 2025
  * 
  */
+#pragma once
 #include <stdint.h>
 
 #include "avr-assert.h"
@@ -121,6 +122,3 @@ typedef struct __attribute__((packed)) {
 
 // Check that the Atmega328p_regs_t is the correct size
 STATIC_ASSERT((sizeof(Atmega328p_regs_t) == 0xff), "sizeof(Atmega328p_regs_t) != 0xff");
-
-Atmega328p_regs_t* ptr_avr_reg = (Atmega328p_regs_t*)0x20;
-
