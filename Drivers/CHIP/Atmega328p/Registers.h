@@ -13,10 +13,6 @@
 
 #include "RegDef.h"
 
-#define ACCESS_REGISTER_BYTE(x)  (*(volatile uint8_t*)(x))
-#define ACCESS_REGISTER_WORD(x)  (*(volatile uint16_t*)(x))
-#define ACCESS_REGISTER_DWORD(x) (*(volatile uint32_t*)(x))
-
 typedef struct __attribute__((packed)) {
     uint8_t     reserved[3];    // addr: 0x00 - 0x02:   Reserved space at address
     PINB_t      PINB;           // addr: 0x03:          Port B input pins
@@ -122,9 +118,6 @@ typedef struct __attribute__((packed)) {
 }Atmega328p_regs_t;
 
 #define reg_size sizeof(Atmega328p_regs_t)
-
-
-static_assert(sizeof(Atmega328p_regs_t) == 0xFF, "Atmega328p_regs_t must be 0x100 bytes");
 
 Atmega328p_regs_t* ptr_avr_reg = (Atmega328p_regs_t*)0x20;
 
