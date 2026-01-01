@@ -3,5 +3,7 @@
         "io.h": "c",
         "iom328p.h": "c",
         "modbus_functions.h": "c",
-    }
+    },
+
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }
