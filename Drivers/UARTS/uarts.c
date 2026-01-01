@@ -1,5 +1,5 @@
 /**
- * @file main.c
+ * @file uarts.c
  * @author Anders Bjørk (anders.bjoerk.unf@gmail.com)
  * @brief 
  * @version 0.1
@@ -10,9 +10,9 @@
  */
 #include "uarts.h"
 
-int main(void)
-{
-    while(1) {};
-    return 0;
-}
+#include "Registers.h"
 
+void uart_init(uint32_t baud) {
+    // Set baud rate
+
+}
