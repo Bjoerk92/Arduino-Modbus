@@ -8,10 +8,11 @@
  * @copyright Copyright (c) 2025
  * 
  */
-
 #include <stdint.h>
 
+#include "avr-assert.h"
 #include "RegDef.h"
+
 
 typedef struct __attribute__((packed)) {
     uint8_t     reserved[3];    // addr: 0x00 - 0x02:   Reserved space at address
@@ -117,7 +118,9 @@ typedef struct __attribute__((packed)) {
     uint8_t     reserved22[55]; // addr: 0xC7 - 0xFF:   Reserved space at address
 }Atmega328p_regs_t;
 
-#define reg_size sizeof(Atmega328p_regs_t)
+
+// Check that the Atmega328p_regs_t is the correct size
+STATIC_ASSERT((sizeof(Atmega328p_regs_t) == 0xff), "sizeof(Atmega328p_regs_t) != 0xff");
 
 Atmega328p_regs_t* ptr_avr_reg = (Atmega328p_regs_t*)0x20;
 
