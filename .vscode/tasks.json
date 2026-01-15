@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Flash",
+            "type": "shell",
+            "command": "C:/Users/Ander/AppData/Local/Arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17/bin/avrdude",
+            "args": [
+                "-C",
+                "C:/Users/Ander/AppData/Local/Arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17/etc/avrdude.conf",
+                "-c",
+                "arduino",
+                "-p",
+                "atmega328p",
+                "-P",
+                "COM6",
+                "-b",
+                "115200",
+                "-D",
+                "-U",
+                "flash:w:${workspaceFolder}/build/${input:Program}.hex:i"
+            ],
+            "problemMatcher": []
+        }
+    ],
+
+    "inputs": [
+        
+        {
+            "id": "Program",
+            "type": "promptString",
+            "description": ""
+        }
+    ]
+}
