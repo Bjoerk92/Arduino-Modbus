@@ -8,12 +8,15 @@
  * @copyright Copyright (c) 2025
  * 
  */
-#include "uarts.h"
-#include "gpio.h"
+#include "Atmega328p.h"
+
+
+static void InitDrv(void) {};
+
 
 int main(void)
 {
-    while(1) {};
+    InitDrv();
+    while(1) {    }
     return 0;
 }
-

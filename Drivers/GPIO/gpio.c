@@ -9,7 +9,15 @@
  * 
  */
 #include "gpio.h"
-#include "Registers.h"
 
 
-void init_gpio(void) {};
+
+
+void DRV_Init_GPIO(uint16_t pin, PinMode_e dir) {
+
+    
+
+
+};
+
+void DRV_Set_GPIO(uint16_t pin, PinState_e state) {};
