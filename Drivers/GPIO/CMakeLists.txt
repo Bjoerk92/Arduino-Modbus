@@ -8,8 +8,3 @@ add_library(GPIO OBJECT
 target_include_directories(GPIO INTERFACE
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>"
 )
-
-target_link_libraries(GPIO 
-    PUBLIC
-        CHIP
-)
