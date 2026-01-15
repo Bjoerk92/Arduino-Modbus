@@ -10,8 +10,6 @@
  */
 #include "uarts.h"
 
-#include "Registers.h"
-
 void uart_init(uint32_t baud) {
     // Set baud rate
 

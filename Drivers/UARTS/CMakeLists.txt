@@ -9,8 +9,3 @@ add_library(UARTS OBJECT
 target_include_directories(UARTS INTERFACE
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>"
 )
-
-target_link_libraries(UARTS 
-    PUBLIC
-        CHIP
-)
