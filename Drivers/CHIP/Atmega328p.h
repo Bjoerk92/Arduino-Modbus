@@ -15,7 +15,7 @@
 
 #include "avr-assert.h"
 #include "avr-interrupt.h"
-#include "avr.h"
+#include "avr-gcc.h"
 
 /**
  * @typedef PINB
