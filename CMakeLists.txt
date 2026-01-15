@@ -23,21 +23,19 @@ set(CMAKE_C_COMPILER   ${AVRC})
 set(CMAKE_ASM_COMPILER   ${AVRC})
 
 project (Modbus C CXX ASM)
-add_subdirectory(Drivers)
 
 set(CMAKE_BUILD_TYPE Release)
 
 # Compiler flags
 set(CSTANDARD "-std=gnu17")
-#set(CDEBUG    "-gstabs -g -ggdb")
 set(CWARN     "-Wall -Wstrict-prototypes -Wl,--gc-sections -Wl,--relax")
 set(CTUNING   "-funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -ffunction-sections -fdata-sections")
 set(COPT      "-Os -lm -lprintf_flt")
 set(CMCU      "-mmcu=${MCU}")
 set(CDEFS     "-DF_CPU=${F_CPU} -DBAUD=${BAUD}")
 
-set(CFLAGS   "${CMCU} ${CDEBUG} ${CDEFS} ${COPT} ${CWARN} ${CSTANDARD} ${CTUNING}")
-set(CXXFLAGS "${CMCU} ${CDEBUG} ${CDEFS} ${COPT} ${CTUNING}")
+set(CFLAGS   "${CMCU} ${CDEFS} ${COPT} ${CWARN} ${CSTANDARD} ${CTUNING}")
+set(CXXFLAGS "${CMCU} ${CDEFS} ${COPT} ${CTUNING}")
 
 set(CMAKE_C_FLAGS   "${CFLAGS}")
 set(CMAKE_CXX_FLAGS "${CXXFLAGS}")
@@ -53,16 +51,21 @@ add_compile_definitions(
         "__AVR_ATmega328P__"
 )
 
-target_link_libraries(${PROJECT_NAME} 
+target_compile_definitions(${PROJECT_NAME} 
+    PUBLIC
+        "__AVR_ATmega328P__"
+        "F_CPU=${F_CPU}"
+)   
+
+target_link_libraries(${PROJECT_NAME} PUBLIC
+    CHIP
     UARTS
     GPIO
-
+    TIMER
 )
 
-target_include_directories(${PROJECT_NAME} 
-    PUBLIC
-        "Drivers"
-)
+add_subdirectory(Drivers)
+
 
 
 # Compiling targets
