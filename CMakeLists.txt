@@ -41,30 +41,32 @@ set(CMAKE_C_FLAGS   "${CFLAGS}")
 set(CMAKE_CXX_FLAGS "${CXXFLAGS}")
 set(CMAKE_ASM_FLAGS   "${CFLAGS}")
 
+SET(TARGET_CHIP "ATmega328P" CACHE STRING  "The AVR chip to target")
+
 # Project setup
 add_executable(${PROJECT_NAME} main.c)
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "${PROJECT_NAME}.elf")
 
+SET(__AVR_ATmega328P__=1 CACHE STRING "Define the AVR chip to target")
+
 add_compile_definitions(
     PUBLIC
         "F_CPU=${F_CPU}"
-        "__AVR_ATmega328P__"
+        "__AVR_ATmega328P__=1"
 )
 
 target_compile_definitions(${PROJECT_NAME} 
     PUBLIC
-        "__AVR_ATmega328P__"
+        "__AVR_ATmega328P__=1"
         "F_CPU=${F_CPU}"
 )   
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
-    CHIP
-    UARTS
-    GPIO
-    TIMER
+    AVR
+
 )
 
-add_subdirectory(Drivers)
+add_subdirectory(Components)
 
 
 
