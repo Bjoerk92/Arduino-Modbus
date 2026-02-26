@@ -1,5 +1,5 @@
 /**
- * @file avr.h
+ * @file avr-gcc.h
  * @author Anders Bjørk (anders.bjoerk.unf@gmail.com)
  * @brief 
  * @version 0.1
@@ -16,6 +16,10 @@
 
 #ifndef STATIC_INLINE
     #define STATIC_INLINE static inline
+#endif
+
+#ifndef STATICFUNC
+    #define STATICFUNC static
 #endif
 
 #ifndef NOINLINE
@@ -46,3 +50,21 @@
     #define IRQ __attribute__((interrupt))
 #endif
 
+#ifndef PACKED
+    #define PACKED __attribute__((packed))
+#endif 
+
+#define SHL(x, y) ((x) << (y))
+#define SHR(x, y) ((x) >> (y))
+
+#define MIN(x, y) (((x) < (y)) ? (x) : (y))
+#define MAX(x, y) (((x) > (y)) ? (x) : (y))
+
+#define BIT(x) (1 << (x))
+
+#define BIT_SET(reg, bit) ((reg) |= (1 <<bit))
+#define BIT_CLR(reg, bit) ((reg) &= ~(1 << bit))
+#define BIT_TOG(reg, bit) ((reg) ^= (1 << bit))
+
+
+static inline void nop(void) { asm volatile ("nop"); }

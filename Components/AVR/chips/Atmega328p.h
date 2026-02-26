@@ -18,29 +18,45 @@
 #include "avr-gcc.h"
 
 /**
+ * @def CHIP
+ * @brief CHIP MACRO - handling the Chip selection in futher code
+ * @author Anders Bjørk (anders.bjoerk.unf@gmail.com)
+ * @date 2025-12-30
+ */
+#define CHIP ATMEGA328P
+
+#define CHIP_F_CPU 16000000U
+#define AVR_REGISTERS_BASE_ADDRESS 0x20
+
+#define MAX_B_PINS   8U
+#define MAX_C_PINS   7U
+#define MAX_D_PINS   8U
+
+
+/**
  * @typedef PINB
  * @author Anders Bjørk (anders.bjoerk.unf@gmail.com)
- * @brief The Port B input pins address.
+ * @brief The Port B input pins address. Used to read the input pins
  * 
  */
 typedef union {
     uint8_t byte;               // Port B data register
     struct {
-        uint8_t PINB0 : 1;      // Port B data bit 0
-        uint8_t PINB1 : 1;      // Port B data bit 1
-        uint8_t PINB2 : 1;      // Port B data bit 2
-        uint8_t PINB3 : 1;      // Port B data bit 3
-        uint8_t PINB4 : 1;      // Port B data bit 4
-        uint8_t PINB5 : 1;      // Port B data bit 5
-        uint8_t PINB6 : 1;      // Port B data bit 6
-        uint8_t PINB7 : 1;      // Port B data bit 7
+        uint8_t PINB0 : 1;      // Port B data bit 0 
+        uint8_t PINB1 : 1;      // Port B data bit 1 
+        uint8_t PINB2 : 1;      // Port B data bit 2 
+        uint8_t PINB3 : 1;      // Port B data bit 3 
+        uint8_t PINB4 : 1;      // Port B data bit 4 
+        uint8_t PINB5 : 1;      // Port B data bit 5 
+        uint8_t PINB6 : 1;      // Port B data bit 6 
+        uint8_t PINB7 : 1;      // Port B data bit 7 
     }b;                         // Port B bit register
 }PINB_t;
 
 /**
  * @typedef DDRB
  * @author Anders Bjørk (anders.bjoerk.unf@gmail.com)
- * @brief The Port B data direction register address.
+ * @brief The Port B data direction register address. Used to set the input and output pins indivdualy
  * 
  */
 typedef union {
@@ -60,7 +76,7 @@ typedef union {
 /**
  * @typedef PORTB
  * @author Anders Bjørk (anders.bjoerk.unf@gmail.com)
- * @brief The Port B data Register.
+ * @brief The Port B data Register. Used to set the output pins
  * 
  */
 typedef union {
@@ -93,7 +109,7 @@ typedef union {
         uint8_t PINC4 : 1;      // Port C Data Register bit 4
         uint8_t PINC5 : 1;      // Port C Data Register bit 5
         uint8_t PINC6 : 1;      // Port C Data Register bit 6
-        uint8_t PINC7 : 1;      // Port C Data Register bit 7
+        uint8_t UNUSED : 1;     // Port C Data Register bit 7 - unused
     }b;                         // Port C Data Register bit register
 }PINC_t;
 
@@ -113,7 +129,7 @@ typedef union {
         uint8_t DDC4 : 1;       // Port C Data Direction Register bit 4
         uint8_t DDC5 : 1;       // Port C Data Direction Register bit 5
         uint8_t DDC6 : 1;       // Port C Data Direction Register bit 6
-        uint8_t DDC7 : 1;       // Port C Data Direction Register bit 7
+        uint8_t UNUSED : 1;     // Port C Data Direction Register bit 7 - unused
     }b;                         // Port C Data Direction Register bit register
 }DDRC_t;
 
@@ -958,7 +974,7 @@ typedef union {
  * 
  */
 typedef union {
-    uint16_t OCR1A;             // Timer/Counter 1 Output Compare Register A
+    uint16_t Word;             // Timer/Counter 1 Output Compare Register A
     struct {
         uint16_t OCR1AL : 8;    // Timer/Counter 1 Output Compare Register A low byte
         uint16_t OCR1AH : 8;    // Timer/Counter 1 Output Compare Register A high byte
@@ -1279,3 +1295,5 @@ typedef struct __attribute__((packed)) {
 // Check that the Atmega328p_regs_t is the correct size
 STATIC_ASSERT((sizeof(Atmega328p_regs_t) == 0xff), "sizeof(Atmega328p_regs_t) != 0xff");
 
+
+#define AVR_SYS_REG (Atmega328p_regs_t*)AVR_REGISTERS_BASE_ADDRESS
