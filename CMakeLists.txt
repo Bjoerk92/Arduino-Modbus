@@ -22,6 +22,9 @@ set(CMAKE_CXX_COMPILER ${AVRCPP})
 set(CMAKE_C_COMPILER   ${AVRC})
 set(CMAKE_ASM_COMPILER   ${AVRC})
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_C_STANDARD 17)
+
 project (Modbus C CXX ASM)
 
 set(CMAKE_BUILD_TYPE Release)
@@ -47,8 +50,6 @@ SET(TARGET_CHIP "ATmega328P" CACHE STRING  "The AVR chip to target")
 add_executable(${PROJECT_NAME} main.c)
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "${PROJECT_NAME}.elf")
 
-SET(__AVR_ATmega328P__=1 CACHE STRING "Define the AVR chip to target")
-
 add_compile_definitions(
     PUBLIC
         "F_CPU=${F_CPU}"
@@ -63,7 +64,8 @@ target_compile_definitions(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
     AVR
-
+    DRV
+    TIMERS
 )
 
 add_subdirectory(Components)
