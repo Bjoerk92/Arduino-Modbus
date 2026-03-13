@@ -917,7 +917,7 @@ typedef union {
     uint8_t byte;               // Timer/Counter 1 Control Register B
     struct {
         uint8_t CS : 3;         // Clock Select bits
-        uint8_t WGM1x : 2;      // Wave generator mode 2 - used with WGM in TCCR1A!
+        uint8_t WGM : 2;      // Wave generator mode 2 - used with WGM in TCCR1A!
         uint8_t reserved : 1;   // Reserved
         uint8_t ICES1 : 1;      // Input Capture 1 Edge Select
         uint8_t ICNC1 : 1;      // Input Capture 1 Noise Canceler
@@ -1004,7 +1004,7 @@ typedef union {
 typedef union {
     uint8_t byte;               // Timer/Counter 2 Control Register 2
     struct {
-        uint8_t WGM2x : 2;      // Waveform Generation Mode 2
+        uint8_t WGM : 2;      // Waveform Generation Mode 2
         uint8_t reserved : 2;   // Reserved
         uint8_t COM2B0 : 1;     // Compare Output Mode 2B
         uint8_t COM2B1 : 1;     // Compare Output Mode 2B
@@ -1023,7 +1023,7 @@ typedef union {
     uint8_t byte;               // Timer/Counter 2 Control Register 2
     struct {
         uint8_t CS : 3;         // Clock Select bits
-        uint8_t WGM2x : 1;      // Waveform Generation Mode 2
+        uint8_t WGM : 1;      // Waveform Generation Mode 2
         uint8_t reserved : 2;   // Reserved
         uint8_t FOC2B : 1;      // Input Capture 2 Edge Select
         uint8_t FOC2A : 1;      // Input Capture 2 Noise Canceler
