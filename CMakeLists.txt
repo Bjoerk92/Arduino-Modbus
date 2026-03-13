@@ -31,6 +31,7 @@ set(CMAKE_BUILD_TYPE Release)
 
 # Compiler flags
 set(CSTANDARD "-std=gnu17")
+set(CPPSTANDARD "-std=gnu++17")
 set(CWARN     "-Wall -Wstrict-prototypes -Wl,--gc-sections -Wl,--relax")
 set(CTUNING   "-funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -ffunction-sections -fdata-sections")
 set(COPT      "-Os -lm -lprintf_flt")
@@ -39,7 +40,7 @@ set(CDEFS     "-DF_CPU=${F_CPU} -DBAUD=${BAUD}")
 set(CMAP      "-Wl,-Map=${PROJECT_NAME}.map")
 
 set(CFLAGS   "${CMCU} ${CDEFS} ${COPT} ${CWARN} ${CSTANDARD} ${CTUNING}")
-set(CXXFLAGS "${CMCU} ${CDEFS} ${COPT} ${CTUNING}")
+set(CXXFLAGS "${CMCU} ${CDEFS} ${COPT} ${CTUNING} ${CWARN} ${CPPSTANDARD}")
 
 set(CMAKE_C_FLAGS   "${CFLAGS}")
 set(CMAKE_CXX_FLAGS "${CXXFLAGS}")
