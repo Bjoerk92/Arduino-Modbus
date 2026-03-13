@@ -36,6 +36,7 @@ set(CTUNING   "-funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums 
 set(COPT      "-Os -lm -lprintf_flt")
 set(CMCU      "-mmcu=${MCU}")
 set(CDEFS     "-DF_CPU=${F_CPU} -DBAUD=${BAUD}")
+set(CMAP      "-Wl,-Map=${PROJECT_NAME}.map")
 
 set(CFLAGS   "${CMCU} ${CDEFS} ${COPT} ${CWARN} ${CSTANDARD} ${CTUNING}")
 set(CXXFLAGS "${CMCU} ${CDEFS} ${COPT} ${CTUNING}")
@@ -43,6 +44,7 @@ set(CXXFLAGS "${CMCU} ${CDEFS} ${COPT} ${CTUNING}")
 set(CMAKE_C_FLAGS   "${CFLAGS}")
 set(CMAKE_CXX_FLAGS "${CXXFLAGS}")
 set(CMAKE_ASM_FLAGS   "${CFLAGS}")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAP}")
 
 SET(TARGET_CHIP "ATmega328P" CACHE STRING  "The AVR chip to target")
 
