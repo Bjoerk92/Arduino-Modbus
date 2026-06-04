@@ -1,0 +1,3 @@
+[submodule "ArduinoSys"]
+	path = ArduinoSys
+	url = https://github.com/Bjoerk92/ArduinoSys.git
