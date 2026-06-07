@@ -4,10 +4,10 @@
         {
             "label": "Flash",
             "type": "shell",
-            "command": "C:/Users/Ander/AppData/Local/Arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17/bin/avrdude",
+            "command": "C:/Users/Ander/AppData/Local/Arduino15/packages/arduino/tools/avrdude/8.0.0-arduino1/bin/avrdude",
             "args": [
                 "-C",
-                "C:/Users/Ander/AppData/Local/Arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17/etc/avrdude.conf",
+                "C:/Users/Ander/AppData/Local/Arduino15/packages/arduino/tools/avrdude/8.0.0-arduino1/etc/avrdude.conf",
                 "-c",
                 "arduino",
                 "-p",
