@@ -9,10 +9,10 @@
  * 
  */
 #include "Atmega.h"
-
+#include "AVR_Drivers.h"
 
 static void InitDrv(void) {
-    
+    setPinMode(0, OUTPUT);
 };
 
 

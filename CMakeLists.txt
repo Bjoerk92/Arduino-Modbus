@@ -67,10 +67,12 @@ target_compile_definitions(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
     ArduinoSys
+    Drivers
 )
 
 add_subdirectory(Components)
 add_subdirectory(ArduinoSys)
+add_subdirectory(ArduinoDriver/Drivers)
 
 # Compiling targets
 add_custom_target(strip ALL     ${AVRSTRIP} "${PROJECT_NAME}.elf" DEPENDS ${PROJECT_NAME})
