@@ -53,25 +53,13 @@ SET(TARGET_CHIP "ATmega328P" CACHE STRING  "The AVR chip to target")
 add_executable(${PROJECT_NAME} main.c)
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "${PROJECT_NAME}.elf")
 
-add_compile_definitions(
-    PUBLIC
-        "F_CPU=${F_CPU}"
-        "__AVR_ATmega328P__=1"
-)
-
-target_compile_definitions(${PROJECT_NAME} 
-    PUBLIC
-        "__AVR_ATmega328P__=1"
-        "F_CPU=${F_CPU}"
-)   
-
 target_link_libraries(${PROJECT_NAME} PUBLIC
-    ArduinoSys
+    AVR_CMSIS
     Drivers
 )
 
 add_subdirectory(Components)
-add_subdirectory(ArduinoSys)
+add_subdirectory(ArduinoSys/AVR_CMSIS)
 add_subdirectory(ArduinoDriver/Drivers)
 
 # Compiling targets
