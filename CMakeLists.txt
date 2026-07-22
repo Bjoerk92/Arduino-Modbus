@@ -1,53 +1,16 @@
 cmake_minimum_required(VERSION 3.10)
 
-# Variables regarding the AVR chip
-set(MCU   atmega328p)
-set(F_CPU 16000000)
-set(BAUD  9600)
-add_definitions(-DF_CPU=${F_CPU})
+set(TARGET_CHIP "ATmega328P" CACHE STRING "Target AVR chip")
+set(F_CPU "16000000UL" CACHE STRING "CPU clock frequency")
+set(BAUD "9600" CACHE STRING "UART baud rate")
 
-# program names
-set(AVRCPP   avr-g++)
-set(AVRC     avr-gcc)
-set(AVRSTRIP avr-strip)
-set(OBJCOPY  avr-objcopy)
-set(OBJDUMP  avr-objdump)
-set(AVRSIZE  avr-size)
-set(AVRDUDE  avrdude)
-
-# Sets the compiler
-# Needs to come before the project function
-set(CMAKE_SYSTEM_NAME  Generic)
-set(CMAKE_CXX_COMPILER ${AVRCPP})
-set(CMAKE_C_COMPILER   ${AVRC})
-set(CMAKE_ASM_COMPILER   ${AVRC})
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_C_STANDARD 17)
+if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+    set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/../ArduinoSys/toolchain/avr_toolchain.cmake" CACHE FILEPATH "Toolchain file for AVR")
+endif()
 
 project (Modbus C CXX ASM)
 
 set(CMAKE_BUILD_TYPE Release)
-
-# Compiler flags
-set(CSTANDARD "-std=gnu17")
-set(CPPSTANDARD "-std=gnu++17")
-set(CWARN     "-Wall -Wstrict-prototypes -Wl,--gc-sections -Wl,--relax")
-set(CTUNING   "-funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -ffunction-sections -fdata-sections")
-set(COPT      "-Os -lm -lprintf_flt")
-set(CMCU      "-mmcu=${MCU}")
-set(CDEFS     "-DF_CPU=${F_CPU} -DBAUD=${BAUD}")
-set(CMAP      "-Wl,-Map=${PROJECT_NAME}.map")
-
-set(CFLAGS   "${CMCU} ${CDEFS} ${COPT} ${CWARN} ${CSTANDARD} ${CTUNING}")
-set(CXXFLAGS "${CMCU} ${CDEFS} ${COPT} ${CTUNING} ${CWARN} ${CPPSTANDARD}")
-
-set(CMAKE_C_FLAGS   "${CFLAGS}")
-set(CMAKE_CXX_FLAGS "${CXXFLAGS}")
-set(CMAKE_ASM_FLAGS   "${CFLAGS}")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAP}")
-
-SET(TARGET_CHIP "ATmega328P" CACHE STRING  "The AVR chip to target")
 
 # Project setup
 add_executable(${PROJECT_NAME} main.c)
